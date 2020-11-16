@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using Unosquare.RaspberryIO;
 using Unosquare.WiringPi;
@@ -54,29 +54,7 @@ namespace Game
         {
             switch (gametype)
             {
-                case "Puzzle":
-                    FileStream RangkingPuzzle = new FileStream("RankingPuzzle", FileMode.Open);
-                    StreamReader reader = new StreamReader(RangkingPuzzle);
-                    StreamWriter writer = new StreamWriter(RangkingPuzzle);
-
-
-                    if (counter == false)
-                    {
-                        string line = reader.ReadLine();                        //Kopiert alles aus der alten Liste in die neue.
-                        while ((line != null))
-                        {
-                            writer.WriteLine(line);
-
-                            line = reader.ReadLine();
-
-                        }
-                        counter = true;
-                        writer.Close();
-                    }
-
-                  
-
-                    Puzzle(username); break;
+                case "Puzzle": Puzzle(username); break;
 
                 default: Console.WriteLine("\nDieses Spiel gibt es nicht!"); break;
             }
@@ -132,9 +110,27 @@ namespace Game
             switch (gametype)
             {
                 case "Puzzle":
-                
+
+                    StreamReader reader = new StreamReader(RangkingPuzzle);
                     StreamWriter writer = new StreamWriter(RangkingPuzzle);
 
+
+
+                    if (counter == false)
+                    {
+                        string line = reader.ReadLine();                        //Kopiert alles aus der alten Liste in die neue.
+                        while ((line != null))
+                        {
+                            writer.WriteLine(line);
+                            writer.Flush();
+                            line = reader.ReadLine();
+
+                        }
+                        counter = true;
+                        writer.Close();
+                    }
+
+                  
 
 
                     writer.WriteLine($"Username:{username}    Score:{score}");  //Schreibt an die nächst freie Stelle
