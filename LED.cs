@@ -1,51 +1,28 @@
-﻿using System;
+
 using Unosquare.RaspberryIO;
-using Unosquare.WiringPi;
 using Unosquare.RaspberryIO.Abstractions;
-using System.Threading;
-using System.Diagnostics;
 
 namespace Game
 {
     public class LED
     {
-        //public static IGpioPin Green;
-        //public static IGpioPin Yellow;
-        //public static IGpioPin Blue;
-        //public static IGpioPin Red;
-        //public static IGpioPin Colour;
-
-        //public LED()
-        //{
-        //    Green =  Pi.Gpio[P1.Pin36];
-        //    Yellow = Pi.Gpio[P1.Pin38];
-        //    Blue = Pi.Gpio[P1.Pin32];
-        //    Red = Pi.Gpio[P1.Pin40];
-
-        //    Green.PinMode = GpioPinDriveMode.Output;
-        //    Yellow.PinMode = GpioPinDriveMode.Output;
-        //    Blue.PinMode = GpioPinDriveMode.Output;
-        //    Red.PinMode = GpioPinDriveMode.Output;
-
-        //}
-
 
         private IGpioPin ledPin;
-        public LED(LEDColor color, P1 pin)
+        public LED(LEDColor color, P1 pin)  //Setzt die Charakterdaten der Klasse. Die Farbe und den dazugehörigen Pin.
         {
             Color = color;
             ledPin = Pi.Gpio[pin];
             ledPin.PinMode = GpioPinDriveMode.Output;
         }
 
-        public LEDColor Color { get; }
+        public LEDColor Color { get; }    //Speichert die Farbe des LED's.
 
-        public bool Enable
+        public bool Enable                //get gibt den aktuellen wert des Pins aus und set setzt den mitgegebenen boolschen wert.
         {
             get { return ledPin.Read(); }
             set { ledPin.Write(value); }
         }
-        public void Toggle()
+        public void Toggle()            //lässt die LED toggeln.
         {
             Enable = !Enable;
         }
