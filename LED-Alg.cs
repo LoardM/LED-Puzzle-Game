@@ -1,9 +1,5 @@
-﻿using System;
-using Unosquare.RaspberryIO;
-using Unosquare.WiringPi;
-using Unosquare.RaspberryIO.Abstractions;
-using System.Threading;
-using System.Runtime.CompilerServices;
+using System;
+
 
 
 namespace Game
@@ -11,8 +7,6 @@ namespace Game
     public class LED_Alg 
     {
        private static Random rand = new System.Random(); // new random object
-
-
 
         private LED ledGreen;
         private LED ledYellow;
@@ -24,9 +18,8 @@ namespace Game
 
         private int Number = 0;
 
-        public LED_Alg(int RN, Raspberry raspi)
+        public LED_Alg(int RN, Raspberry raspi)                         // wertet die mitgegebene Random nummer aus und teilt dementsprechend die LED's diesem Objekt zu.
         {
-            
 
             ledGreen = raspi[LEDColor.Green];
             ledYellow = raspi[LEDColor.Yellow];
@@ -47,7 +40,7 @@ namespace Game
            
         }
 
-        public void SetLed()
+        public void SetLed()        // lässt die LED's dieses Objekts Toggeln.
         {
 
             if (Number == 5)
@@ -67,20 +60,6 @@ namespace Game
 
            
         }
-
-
-
-        // public static void ran()
-        // {
-        //     Console.WriteLine(rand.Next(100, 201)); // numbers : 100 -200
-        // }
-
-        
-
-
-
-
-
 
     }
 }
