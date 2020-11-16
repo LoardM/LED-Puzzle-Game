@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+using System;
 using Unosquare.RaspberryIO;
 using Unosquare.WiringPi;
 using Unosquare.RaspberryIO.Abstractions;
-using System.Threading;
+
 namespace Game
 {
     public class Raspberry
@@ -28,7 +25,7 @@ namespace Game
 
 
 
-        public Raspberry()
+        public Raspberry()                          //Teilt den LED objekten die Farbe und die LED-Pins zu.
         {
             Pi.Init<BootstrapWiringPi>();
 
@@ -47,7 +44,7 @@ namespace Game
 
     
 
-        public LED this[LEDColor color]
+        public LED this[LEDColor color]                     //Lässt sich wie ein Array aufrufen und man kann mithilfe eine LEDfarbe das entsprechende LED-Objekt abfragen.
         {
             get
             {
@@ -61,7 +58,8 @@ namespace Game
                 }
             }
         }
-        public Joystick this[JoystickE direc]
+
+        public Joystick this[JoystickE direc]           // Mithilfe einer Richtung lässt sich das entsprechende Joystick-Objekt abfragen.
         {
             get
             {
